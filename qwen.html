@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Lumina transforms enterprise workflows through AI-driven architecture, immersive UX design, and scalable cloud infrastructure. Partner with us to future-proof your digital ecosystem.">
+  <meta name="keywords" content="AI transformation, cloud architecture, UX design, enterprise software, digital strategy">
+  <meta name="author" content="Lumina Digital">
+  <meta name="theme-color" content="#0b0c10">
+  <meta property="og:title" content="Lumina | AI-Driven Digital Transformation">
+  <meta property="og:description" content="Engineering scalable solutions and immersive experiences for forward-thinking enterprises.">
+  <meta property="og:type" content="website">
+  <title>Lumina | AI-Driven Digital Transformation</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%230b0c10%22 rx=%2215%22/><text y=%22.85em%22 font-size=%2275%22 x=%2215%22>🌌</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+  <style>
+    /* =========================================
+       CSS VARIABLES & THEME CONFIGURATION
+       ========================================= */
+    :root {
+      --bg-primary: #0b0c10;
+      --bg-secondary: #12131a;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --bg-glass: rgba(11, 12, 16, 0.75);
+      --text-primary: #f8f9fa;
+      --text-secondary: #a0a0a5;
+      --accent: #6c63ff;
+      --accent-glow: rgba(108, 99, 255, 0.4);
+      --border: rgba(255, 255, 255, 0.08);
+      --shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+      --radius: 16px;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --font-serif: 'Playfair Display', Georgia, serif;
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #fafafa;
+      --bg-secondary: #ffffff;
+      --bg-card: rgba(11, 12, 16, 0.02);
+      --bg-glass: rgba(255, 255, 255, 0.85);
+      --text-primary: #0f1115;
+      --text-secondary: #5a5d6b;
+      --accent: #5240d8;
+      --accent-glow: rgba(82, 64, 216, 0.3);
+      --border: rgba(15, 17, 21, 0.1);      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    /* =========================================
+       RESET & BASE STYLES
+       ========================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background var(--transition), color var(--transition);
+    }
+    a { text-decoration: none; color: inherit; transition: var(--transition); }
+    ul { list-style: none; }
+    img { max-width: 100%; height: auto; display: block; }
+    button, input, textarea { font-family: inherit; border: none; outline: none; background: transparent; }
+    button { cursor: pointer; }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-primary); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #5a50e8; }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    }
+
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+    /* =========================================
+       COMPONENTS & LAYOUT
+       ========================================= */
+    .container { width: min(92%, 1200px); margin: 0 auto; padding: 0 1rem; }
+    .section { padding: clamp(4rem, 8vw, 7rem) 0; position: relative; }
+    .section-header { text-align: center; max-width: 700px; margin: 0 auto 4rem; }
+    .section-header h2 { font-family: var(--font-serif); font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 1rem; line-height: 1.2; }
+    .section-header p { color: var(--text-secondary); font-size: 1.125rem; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.9rem 2rem; border-radius: 50px; font-weight: 500;
+      transition: var(--transition); position: relative; overflow: hidden;
+      z-index: 1; font-size: 0.95rem;
+    }    .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 4px 20px var(--accent-glow); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px var(--accent-glow); }
+    .btn-secondary { background: transparent; color: var(--text-primary); border: 1px solid var(--border); }
+    .btn-secondary:hover { background: var(--bg-card); border-color: var(--accent); }
+
+    /* Scroll Animations */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 1, 0.3, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+
+    /* =========================================
+       NAVIGATION
+       ========================================= */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 1.25rem 0; transition: var(--transition);
+    }
+    .navbar.scrolled {
+      background: var(--bg-glass); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border); padding: 0.8rem 0;
+    }
+    .nav-container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-family: var(--font-serif); font-size: 1.75rem; font-weight: 700; color: var(--text-primary); }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a { font-size: 0.95rem; font-weight: 500; color: var(--text-secondary); position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent); transition: var(--transition); }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-actions { display: flex; align-items: center; gap: 1.5rem; }
+    .theme-toggle { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--bg-card); color: var(--text-primary); transition: var(--transition); }
+    .theme-toggle:hover { background: var(--accent); color: #fff; }
+    .hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1001; }
+    .hamburger span { display: block; width: 28px; height: 2px; background: var(--text-primary); transition: var(--transition); transform-origin: center; }
+    .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; transform: translateX(-10px); }
+    .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-links {
+        position: fixed; top: 0; right: -100%; width: 75%; max-width: 300px; height: 100vh;
+        background: var(--bg-secondary); flex-direction: column; justify-content: center; align-items: center;
+        transition: var(--transition); box-shadow: -10px 0 30px rgba(0,0,0,0.2);
+      }
+      .nav-links.active { right: 0; }
+    }
+    /* =========================================
+       HERO SECTION
+       ========================================= */
+    .hero {
+      position: relative; height: 100vh; display: flex; align-items: center; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: -1;
+      background: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
+      will-change: transform;
+    }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(11,12,16,0.85) 0%, rgba(11,12,16,0.6) 50%, rgba(108,99,255,0.3) 100%); }
+    .hero-content { max-width: 800px; position: relative; z-index: 2; }
+    .hero-tag { display: inline-block; padding: 0.4rem 1rem; border-radius: 30px; background: rgba(108,99,255,0.15); color: var(--accent); font-size: 0.85rem; font-weight: 600; margin-bottom: 1.5rem; border: 1px solid rgba(108,99,255,0.3); }
+    .hero h1 { font-family: var(--font-serif); font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.1; margin-bottom: 1.5rem; background: linear-gradient(to right, var(--text-primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero p { font-size: clamp(1rem, 2vw, 1.25rem); color: var(--text-secondary); max-width: 600px; margin-bottom: 2.5rem; }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+    /* =========================================
+       FEATURES
+       ========================================= */
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+    .feature-card {
+      background: var(--bg-card); border: 1px solid var(--border); padding: 2.5rem; border-radius: var(--radius);
+      transition: var(--transition); position: relative; overflow: hidden;
+    }
+    .feature-card:hover { transform: translateY(-8px); box-shadow: var(--shadow); border-color: rgba(108,99,255,0.3); }
+    .feature-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--accent), transparent); opacity: 0; transition: var(--transition); }
+    .feature-card:hover::before { opacity: 1; }
+    .feature-icon { width: 56px; height: 56px; border-radius: 12px; background: rgba(108,99,255,0.1); color: var(--accent); display: grid; place-items: center; font-size: 1.5rem; margin-bottom: 1.5rem; transition: var(--transition); }
+    .feature-card:hover .feature-icon { background: var(--accent); color: #fff; transform: rotateY(180deg); }
+    .feature-card h3 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+    .feature-card p { color: var(--text-secondary); font-size: 0.95rem; }
+
+    /* =========================================
+       ABOUT + COUNTERS
+       ========================================= */
+    .about-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    @media (max-width: 900px) { .about-wrapper { grid-template-columns: 1fr; } }
+    .about-image { position: relative; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+    .about-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .about-image:hover img { transform: scale(1.05); }
+    .about-text h2 { font-family: var(--font-serif); font-size: clamp(1.8rem, 4vw, 2.5rem); margin-bottom: 1.5rem; }
+    .about-text p { color: var(--text-secondary); margin-bottom: 1.5rem; }
+    .counters-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2rem; }
+    .counter-item { text-align: center; padding: 1rem; background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border); }
+    .counter-value { font-size: 2rem; font-weight: 700; color: var(--accent); display: block; margin-bottom: 0.25rem; }
+    .counter-label { font-size: 0.85rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; }
+
+    /* =========================================       TESTIMONIALS
+       ========================================= */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    .testimonial-card { background: var(--bg-card); padding: 2rem; border-radius: var(--radius); border: 1px solid var(--border); transition: var(--transition); }
+    .testimonial-card:hover { border-color: var(--accent); }
+    .stars { color: #ffb400; margin-bottom: 1rem; font-size: 0.9rem; }
+    .quote { font-style: italic; color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 1.05rem; }
+    .client-info { display: flex; align-items: center; gap: 1rem; }
+    .client-info img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
+    .client-details h4 { font-size: 1rem; }
+    .client-details span { font-size: 0.8rem; color: var(--text-secondary); }
+
+    /* =========================================
+       CONTACT FORM
+       ========================================= */
+    .contact-wrapper { max-width: 700px; margin: 0 auto; background: var(--bg-card); padding: 3rem; border-radius: var(--radius); border: 1px solid var(--border); }
+    .form-group { margin-bottom: 1.5rem; position: relative; }
+    .form-label { display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.9rem; }
+    .form-input, .form-textarea { width: 100%; padding: 1rem 1.25rem; background: var(--bg-primary); border: 1px solid var(--border); border-radius: 10px; color: var(--text-primary); font-size: 1rem; transition: var(--transition); }
+    .form-textarea { min-height: 140px; resize: vertical; }
+    .form-input:focus, .form-textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(108,99,255,0.15); }
+    .error-msg { color: #ff4d4d; font-size: 0.8rem; margin-top: 0.4rem; display: none; position: absolute; bottom: -1.1rem; left: 0; }
+    .form-group.error .form-input, .form-group.error .form-textarea { border-color: #ff4d4d; }
+    .form-group.error .error-msg { display: block; }
+    .form-submit { width: 100%; padding: 1rem; margin-top: 1rem; }
+
+    /* Toast Notification */
+    .toast { position: fixed; bottom: 2rem; right: 2rem; background: #10b981; color: #fff; padding: 1rem 1.5rem; border-radius: 10px; box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3); transform: translateX(150%); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 2000; display: flex; align-items: center; gap: 0.75rem; }
+    .toast.show { transform: translateX(0); }
+
+    /* =========================================
+       FOOTER
+       ========================================= */
+    .footer { background: var(--bg-secondary); padding: 4rem 0 2rem; border-top: 1px solid var(--border); }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2.5rem; margin-bottom: 3rem; }
+    .footer-col h3 { font-size: 1.1rem; margin-bottom: 1.25rem; }
+    .footer-links li { margin-bottom: 0.75rem; }
+    .footer-links a { color: var(--text-secondary); font-size: 0.9rem; }
+    .footer-links a:hover { color: var(--accent); padding-left: 4px; }
+    .social-icons { display: flex; gap: 1rem; }
+    .social-icons a { width: 40px; height: 40px; border-radius: 50%; background: var(--bg-card); display: grid; place-items: center; color: var(--text-secondary); transition: var(--transition); }
+    .social-icons a:hover { background: var(--accent); color: #fff; transform: translateY(-3px); }
+    .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" aria-label="Main navigation">
+    <div class="container nav-container">
+      <a href="#" class="logo">Lumina<span>.</span></a>      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#testimonials">Clients</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" aria-label="Toggle dark/light mode" aria-pressed="false">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+        <a href="#contact" class="btn btn-primary">Get Started</a>
+        <div class="hamburger" aria-label="Toggle menu" role="button" tabindex="0">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Hero -->
+    <header id="home" class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
+      <div class="container hero-content reveal">
+        <span class="hero-tag">Next-Gen Engineering</span>
+        <h1>Architecting Tomorrow's Digital Ecosystem</h1>
+        <p>We merge artificial intelligence, scalable cloud infrastructure, and human-centric design to build platforms that drive exponential growth.</p>
+        <div class="hero-buttons">
+          <a href="#features" class="btn btn-primary">Explore Solutions <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="#contact" class="btn btn-secondary">Book Consultation</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Features -->
+    <section id="features" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2>Core Capabilities</h2>
+          <p>Strategic engineering solutions tailored for enterprise agility and market leadership.</p>
+        </div>
+        <div class="features-grid">
+          <article class="feature-card reveal delay-1">
+            <div class="feature-icon"><i class="fa-solid fa-microchip"></i></div>
+            <h3>AI Integration</h3>
+            <p>Deploy custom machine learning models and predictive analytics directly into your existing workflow pipelines.</p>
+          </article>
+          <article class="feature-card reveal delay-2">
+            <div class="feature-icon"><i class="fa-solid fa-cloud"></i></div>            <h3>Cloud Architecture</h3>
+            <p>Design fault-tolerant, auto-scaling infrastructure across AWS, Azure, and GCP with zero-downtime deployments.</p>
+          </article>
+          <article class="feature-card reveal delay-3">
+            <div class="feature-icon"><i class="fa-solid fa-layer-group"></i></div>
+            <h3>UX/UI Engineering</h3>
+            <p>Create accessible, high-conversion interfaces grounded in behavioral psychology and performance optimization.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section">
+      <div class="container about-wrapper">
+        <figure class="about-image reveal">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop" alt="Diverse engineering team collaborating around a digital workspace" loading="lazy">
+        </figure>
+        <div class="about-text reveal delay-1">
+          <h2>Engineered for Scale, Built for People</h2>
+          <p>Founded in 2018, Lumina bridges the gap between complex backend systems and intuitive user experiences. We don't just write code; we solve operational bottlenecks through strategic technology implementation.</p>
+          <p>Our multidisciplinary teams work alongside your stakeholders to deliver measurable ROI within the first quarter of deployment.</p>
+          <div class="counters-grid" id="counters">
+            <div class="counter-item">
+              <span class="counter-value" data-target="150">0</span>
+              <span class="counter-label">Enterprise Clients</span>
+            </div>
+            <div class="counter-item">
+              <span class="counter-value" data-target="98">0</span>
+              <span class="counter-label">% Success Rate</span>
+            </div>
+            <div class="counter-item">
+              <span class="counter-value" data-target="12">0</span>
+              <span class="counter-label">Industry Awards</span>
+            </div>
+            <div class="counter-item">
+              <span class="counter-value" data-target="40">0</span>
+              <span class="counter-label">Countries Served</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2>Trusted by Industry Leaders</h2>
+          <p>Real outcomes from strategic partnerships.</p>        </div>
+        <div class="testimonials-grid">
+          <article class="testimonial-card reveal delay-1">
+            <div class="stars" aria-label="5 stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <blockquote class="quote">"Lumina's migration strategy reduced our infrastructure costs by 34% while improving API response times by 200%. Exceptional execution."</blockquote>
+            <div class="client-info">
+              <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=100&auto=format&fit=crop" alt="Elena Rostova" loading="lazy">
+              <div class="client-details">
+                <h4>Elena Rostova</h4>
+                <span>CTO, Vertex Dynamics</span>
+              </div>
+            </div>
+          </article>
+          <article class="testimonial-card reveal delay-2">
+            <div class="stars" aria-label="5 stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <blockquote class="quote">"The AI recommendation engine they built increased our average order value by 22% in under six weeks. Truly transformative."</blockquote>
+            <div class="client-info">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&auto=format&fit=crop" alt="Marcus Chen" loading="lazy">
+              <div class="client-details">
+                <h4>Marcus Chen</h4>
+                <span>VP Product, NovaRetail</span>
+              </div>
+            </div>
+          </article>
+          <article class="testimonial-card reveal delay-3">
+            <div class="stars" aria-label="5 stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+            <blockquote class="quote">"Professional, transparent, and deeply technical. They treated our compliance requirements as non-negotiable from day one."</blockquote>
+            <div class="client-info">
+              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=100&auto=format&fit=crop" alt="Sarah Jenkins" loading="lazy">
+              <div class="client-details">
+                <h4>Sarah Jenkins</h4>
+                <span>Director, FinSecure Global</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2>Initiate a Partnership</h2>
+          <p>Share your objectives. We'll respond with a tailored technical roadmap within 24 hours.</p>
+        </div>
+        <div class="contact-wrapper reveal delay-1">
+          <form id="contactForm" novalidate aria-label="Contact form">
+            <div class="form-group">
+              <label for="name" class="form-label">Full Name</label>              <input type="text" id="name" name="name" class="form-input" placeholder="John Doe" required aria-required="true">
+              <span class="error-msg">Please enter your full name.</span>
+            </div>
+            <div class="form-group">
+              <label for="email" class="form-label">Business Email</label>
+              <input type="email" id="email" name="email" class="form-input" placeholder="john@company.com" required aria-required="true">
+              <span class="error-msg">Please enter a valid email address.</span>
+            </div>
+            <div class="form-group">
+              <label for="project" class="form-label">Project Scope</label>
+              <textarea id="project" name="project" class="form-textarea" placeholder="Describe your objectives, timeline, and technical requirements..." required aria-required="true"></textarea>
+              <span class="error-msg">Please provide a brief project overview.</span>
+            </div>
+            <button type="submit" class="btn btn-primary form-submit">Send Proposal Request <i class="fa-solid fa-paper-plane"></i></button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="#" class="logo">Lumina<span>.</span></a>
+          <p style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">Engineering resilient digital foundations for tomorrow's market leaders.</p>
+          <div class="social-icons" style="margin-top: 1.5rem;">
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="#" aria-label="Dribbble"><i class="fa-brands fa-dribbble"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h3>Company</h3>
+          <ul class="footer-links">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Engineering Blog</a></li>
+            <li><a href="#">Press Kit</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Solutions</h3>
+          <ul class="footer-links">
+            <li><a href="#">AI & Machine Learning</a></li>
+            <li><a href="#">Cloud Infrastructure</a></li>
+            <li><a href="#">Product Design</a></li>
+            <li><a href="#">Security Audits</a></li>          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <ul class="footer-links">
+            <li><a href="mailto:hello@lumina.dev"><i class="fa-solid fa-envelope" style="margin-right: 8px;"></i> hello@lumina.dev</a></li>
+            <li><span style="color: var(--text-secondary); font-size: 0.9rem;"><i class="fa-solid fa-location-dot" style="margin-right: 8px;"></i> 400 Tech Blvd, Austin, TX</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; <span id="year"></span> Lumina Digital. All rights reserved. Engineered for performance.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div id="toast" class="toast" role="alert" aria-live="polite">
+    <i class="fa-solid fa-circle-check"></i>
+    <span>Message sent successfully. We'll contact you shortly.</span>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Dynamic Year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // 2. Navbar Scroll Effect & Active Link Highlighting
+      const navbar = document.querySelector('.navbar');
+      const sections = document.querySelectorAll('section, header');
+      const navLinks = document.querySelectorAll('.nav-links a');
+
+      const handleScroll = () => {
+        const scrollY = window.scrollY;
+        navbar.classList.toggle('scrolled', scrollY > 50);
+
+        let current = '';
+        sections.forEach(sec => {
+          const top = sec.offsetTop - 150;
+          if (scrollY >= top) current = sec.getAttribute('id');
+        });
+
+        navLinks.forEach(link => {
+          link.style.color = '';
+          if (link.getAttribute('href') === `#${current}`) {
+            link.style.color = 'var(--text-primary)';
+          }
+        });
+      };      window.addEventListener('scroll', handleScroll, { passive: true });
+
+      // 3. Mobile Menu Toggle
+      const hamburger = document.querySelector('.hamburger');
+      const navMenu = document.querySelector('.nav-links');
+      const closeMenu = () => { hamburger.classList.remove('active'); navMenu.classList.remove('active'); };
+      hamburger.addEventListener('click', () => {
+        const isOpen = hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        hamburger.setAttribute('aria-expanded', isOpen);
+      });
+      navLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+      // 4. Theme Toggle (Dark/Light)
+      const themeBtn = document.querySelector('.theme-toggle');
+      const themeIcon = themeBtn.querySelector('i');
+      const savedTheme = localStorage.getItem('theme');
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      const applyTheme = (theme) => {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        themeIcon.className = theme === 'dark' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+        themeBtn.setAttribute('aria-pressed', theme === 'dark');
+      };
+
+      applyTheme(savedTheme || (systemDark ? 'dark' : 'light'));
+      themeBtn.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        applyTheme(current === 'dark' ? 'light' : 'dark');
+      });
+
+      // 5. Scroll Reveal Animations (Intersection Observer)
+      const revealElements = document.querySelectorAll('.reveal');
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target); // Animate once
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+      revealElements.forEach(el => revealObserver.observe(el));
+
+      // 6. Animated Counters
+      const counters = document.querySelectorAll('.counter-value');
+      let hasCounted = false;
+
+      const animateCounters = () => {
+        if (hasCounted) return;        counters.forEach(counter => {
+          const target = +counter.dataset.target;
+          const duration = 2000; // ms
+          const step = Math.ceil(target / (duration / 16));
+          let current = 0;
+
+          const update = () => {
+            current += step;
+            if (current > target) current = target;
+            counter.textContent = current + (target === 98 ? '%' : '+');
+            if (current < target) requestAnimationFrame(update);
+          };
+          update();
+        });
+        hasCounted = true;
+      };
+
+      const counterObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => { if (entry.isIntersecting) { animateCounters(); obs.unobserve(entry.target); } });
+      }, { threshold: 0.5 });
+      counterObserver.observe(document.getElementById('counters'));
+
+      // 7. Parallax Effect (Optimized with rAF)
+      const heroBg = document.querySelector('.hero-bg');
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            const scrollY = window.scrollY;
+            if (scrollY < window.innerHeight) {
+              heroBg.style.transform = `translateY(${scrollY * 0.4}px) scale(1.1)`;
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+
+      // 8. Form Validation & Submission UI
+      const form = document.getElementById('contactForm');
+      const toast = document.getElementById('toast');
+
+      const showError = (input, show) => {
+        const group = input.closest('.form-group');
+        group.classList.toggle('error', show);
+      };
+
+      const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+      form.addEventListener('submit', (e) => {        e.preventDefault();
+        let isValid = true;
+
+        const name = form.name;
+        const email = form.email;
+        const project = form.project;
+
+        // Reset
+        [name, email, project].forEach(f => showError(f, false));
+
+        if (name.value.trim().length < 2) { showError(name, true); isValid = false; }
+        if (!validateEmail(email.value.trim())) { showError(email, true); isValid = false; }
+        if (project.value.trim().length < 10) { showError(project, true); isValid = false; }
+
+        if (isValid) {
+          const btn = form.querySelector('.form-submit');
+          const originalText = btn.innerHTML;
+          btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Sending...';
+          btn.disabled = true;
+
+          // Simulate API call
+          setTimeout(() => {
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+            form.reset();
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 4000);
+          }, 1500);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
